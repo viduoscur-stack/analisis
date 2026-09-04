@@ -1,0 +1,60 @@
+[
+  {
+    "test_id": "T101",
+    "categories": [
+      "razonamiento_matematico_multipaso",
+      "H_numeros"
+    ],
+    "has_check": true,
+    "think_false": {
+      "accuracy": 1.0,
+      "avg_latency_ms": 20480.666859983467,
+      "avg_hidden_tokens": 1,
+      "n_thinking_detected": 0,
+      "n": 5
+    },
+    "think_true": {
+      "accuracy": 1.0,
+      "avg_latency_ms": 36994.03295998927,
+      "avg_hidden_tokens": 5,
+      "n_thinking_detected": 5,
+      "n": 5
+    },
+    "think_omitido": {
+      "accuracy": 1.0,
+      "avg_latency_ms": 39408.17754003219,
+      "avg_hidden_tokens": 1654,
+      "n_thinking_detected": 5,
+      "n": 5
+    }
+  },
+  {
+    "test_id": "T105",
+    "categories": [
+      "memoria_contexto_distribuido",
+      "H_numeros"
+    ],
+    "has_check": true,
+    "think_false": {
+      "accuracy": 1.0,
+      "avg_latency_ms": 6110.564739955589,
+      "avg_hidden_tokens": 1,
+      "n_thinking_detected": 0,
+      "n": 5
+    },
+    "think_true": {
+      "accuracy": 1.0,
+      "avg_latency_ms": 16944.827620033175,
+      "avg_hidden_tokens": 5,
+      "n_thinking_detected": 5,
+      "n": 5
+    },
+    "think_omitido": {
+      "accuracy": 1.0,
+      "avg_latency_ms": 14174.920380022377,
+      "avg_hidden_tokens": 715,
+      "n_thinking_detected": 5,
+      "n": 5
+    }
+  }
+]
