@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ORA Consensus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="orb.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <nav class="sidebar">
+    <div class="sidebar-top-row">
+      <button id="sidebar-toggle-btn" class="sidebar-toggle-btn" title="Ocultar barra lateral">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><line x1="9.5" y1="4" x2="9.5" y2="20"/></svg>
+      </button>
+    </div>
+    <div class="brand">
+      <img src="assets/logos/ora-consensus-white.png" alt="ORA Consensus" class="brand-logo" id="brand-logo-img" />
+      <img src="assets/logos/ora-icon-white.png" alt="ORA" class="brand-icon-collapsed" id="brand-icon-img" />
+    </div>
+    <button id="new-chat-btn" class="new-chat-btn" title="Nuevo proyecto">✚ <span class="new-chat-label">Nuevo proyecto</span></button>
+    <button class="nav-item active" data-view="chat" title="Mesa de discusión">
+      <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span> <span class="nav-label">Mesa de discusión</span>
+    </button>
+    <button class="nav-item nav-subitem-flat" data-jump="puntos_de_vista" title="Puntos de vista">
+      <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span> <span class="nav-label">Puntos de vista</span>
+    </button>
+    <button class="nav-item nav-subitem-flat" data-jump="discusion" title="Discusión">
+      <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span> <span class="nav-label">Discusión</span>
+    </button>
+    <button class="nav-item nav-subitem-flat" data-jump="respuestas_finales" title="Respuestas finales">
+      <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><polyline points="8 11 10.5 13.5 15 8.5"/></svg></span> <span class="nav-label">Respuestas finales</span>
+    </button>
+    <button class="nav-item nav-subitem-flat" data-jump="consenso" title="Consenso final">
+      <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span> <span class="nav-label">Consenso final</span>
+    </button>
+    <button class="nav-item" data-view="historial" title="Historial">
+      <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span> <span class="nav-label">Historial</span>
+    </button>
+    <button class="nav-item" data-view="tournament" title="Modo Torneo">
+      <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4"/><path d="M17 5h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/></svg></span> <span class="nav-label">Modo Torneo</span>
+    </button>
+
+    <div class="sidebar-section-title">Proyectos recientes</div>
+    <div id="sidebar-recent-projects" class="sidebar-projects">
+      <p class="empty-note-small">Sin proyectos todavía.</p>
+    </div>
+    <button type="button" class="nav-item view-all-history-btn" data-view="historial">Ver todo el historial</button>
+
+    <div class="sidebar-user-card-wrap">
+      <button type="button" id="sidebar-user-card" class="sidebar-user-card" title="Punto Lineal">
+        <div class="sidebar-user-avatar">PL</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">Punto Lineal <span class="pro-badge">Pro</span></div>
+          <div class="sidebar-user-email">punto.lineal@estudio.com</div>
+        </div>
+        <span class="sidebar-user-chevron">▾</span>
+      </button>
+      <div id="sidebar-user-menu" class="sidebar-user-menu hidden">
+        <button class="sidebar-user-menu-item" data-view="config">
+          <span class="nav-icon icon-svg"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span> Configuración
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="content">
+
+    <!-- VISTA: CHAT -->
+    <section id="view-chat" class="view active">
+      <header class="view-header">
+        <div class="view-header-top">
+          <div>
+            <h1>Mesa de discusión</h1>
+            <p class="subtitle">Colabora con la IA para tomar las mejores decisiones. Pregunta, debate y llega a consensos.</p>
+          </div>
+          <div class="view-header-actions">
+            <div class="search-box">
+              <span class="search-icon"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+              <input type="text" id="search-input" placeholder="Buscar en la conversación..." />
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div id="project-badge" class="project-badge">
+        <span class="project-badge-pill">Proyecto: <strong id="project-badge-title">Nuevo proyecto</strong></span>
+        <span class="project-badge-pill project-badge-status-pill"><span class="project-badge-dot"></span> <span id="project-badge-status">Activo</span></span>
+      </div>
+
+      <div id="progress-tracker" class="progress-tracker hidden">
+        <div class="stage" data-stage="1"><span class="stage-dot"></span><span class="stage-label">Puntos de vista</span></div>
+        <div class="stage" data-stage="2"><span class="stage-dot"></span><span class="stage-label">Discusión</span></div>
+        <div class="stage" data-stage="3"><span class="stage-dot"></span><span class="stage-label">Respuestas finales</span></div>
+        <div class="stage" data-stage="4"><span class="stage-dot"></span><span class="stage-label">Consenso</span></div>
+      </div>
+
+      <div id="turns" class="turns"></div>
+
+      <button type="button" id="toggle-manual-form" class="secondary-btn small-btn">
+        ➕ Pegar opinión de otra IA (ChatGPT, DeepSeek, Claude...)
+      </button>
+
+      <div id="pre-question-manual" class="hidden"></div>
+
+      <div id="attachment-chip" class="attachment-chip hidden">
+        <span id="attachment-chip-name"></span>
+        <button type="button" id="attachment-remove">✕</button>
+      </div>
+
+      <form id="chat-form" class="chat-form">
+        <button type="button" id="mic-btn" class="attach-btn" title="Dictar por voz"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></button>
+        <button type="button" id="attach-btn" class="attach-btn" title="Adjuntar archivo"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+        <input type="file" id="file-input" accept=".pdf,.docx,.md,.txt,.html,.htm,.png,.jpg,.jpeg,.webp,.gif,.zip" hidden />
+        <input id="chat-input" type="text" placeholder="Escribe tu pregunta o pega información adicional..." autocomplete="off" />
+        <button type="button" id="copy-question-btn" class="attach-btn" title="Copiar la pregunta (para pegarla en ChatGPT, Claude, etc.)">📋</button>
+        <button type="submit" id="chat-submit"><span class="send-btn-icon">➤</span> Enviar <span class="send-btn-chevron">▾</span></button>
+      </form>
+    </section>
+
+    <!-- VISTA: ESTADO -->
+    <section id="view-estado" class="view">
+      <header class="view-header">
+        <h1>Estado del panel</h1>
+        <p class="subtitle">Quién está conectado ahora mismo.</p>
+      </header>
+      <button id="refresh-status" class="secondary-btn">Actualizar estado</button>
+      <div id="status-list" class="status-list"></div>
+    </section>
+
+    <!-- VISTA: CONFIGURACIÓN -->
+    <section id="view-config" class="view">
+      <header class="view-header">
+        <h1>Configuración</h1>
+        <p class="subtitle">API keys, modo de conversación y qué IAs participan en el panel.</p>
+      </header>
+
+      <form id="config-form">
+
+        <div class="config-section">
+          <div class="config-section-title">Modo de conversación</div>
+          <div class="mode-toggle">
+            <label class="radio-row">
+              <input type="radio" name="mode" value="panel" checked />
+              Panel completo (todas discuten y llegan a un consenso)
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="mode" value="single" />
+              Conversar con una sola IA
+            </label>
+          </div>
+          <div id="single-picker" class="single-picker hidden">
+            <label class="field-label">¿Con cuál IA?</label>
+            <select id="single-participant"></select>
+          </div>
+        </div>
+
+        <div class="config-section">
+          <div class="config-section-title">Gemini</div>
+          <label class="switch-row">
+            <input type="checkbox" id="gemini-enabled" />
+            <span>Habilitado</span>
+          </label>
+          <label class="field-label">API key</label>
+          <input type="password" id="gemini-key" class="text-input" placeholder="AIza..." />
+          <label class="field-label">Modelo</label>
+          <input type="text" id="gemini-model" class="text-input" list="gemini-model-suggestions" placeholder="gemini-2.5-flash" />
+          <datalist id="gemini-model-suggestions">
+            <option value="gemini-2.5-flash"></option>
+            <option value="gemini-flash-latest"></option>
+            <option value="gemini-2.5-flash-lite"></option>
+            <option value="gemini-2.5-pro"></option>
+          </datalist>
+          <p class="subtitle" style="margin-top:6px;">Si el modelo que pongas ya no existe o se queda sin cuota, el sistema prueba automáticamente con los otros modelos gratuitos vigentes.</p>
+        </div>
+
+        <div class="config-section">
+          <div class="config-section-title">NVIDIA NIM</div>
+          <label class="switch-row">
+            <input type="checkbox" id="nvidia-enabled" />
+            <span>Habilitado</span>
+          </label>
+          <label class="field-label">API key</label>
+          <input type="password" id="nvidia-key" class="text-input" placeholder="nvapi-..." />
+          <label class="field-label">Modelo</label>
+          <input type="text" id="nvidia-model" class="text-input" list="nvidia-model-suggestions" placeholder="nvidia/nemotron-3-nano-30b-a3b" />
+          <datalist id="nvidia-model-suggestions">
+            <option value="nvidia/nemotron-3-nano-30b-a3b"></option>
+            <option value="meta/llama-3.3-70b-instruct"></option>
+            <option value="nvidia/nemotron-3-super-120b-a12b"></option>
+          </datalist>
+          <p class="subtitle" style="margin-top:6px;">Si el modelo que pongas ya no existe o se queda sin cuota, el sistema prueba automáticamente con los otros modelos gratuitos vigentes.</p>
+        </div>
+
+        <div class="config-section">
+          <div class="config-section-title">Groq</div>
+          <label class="switch-row">
+            <input type="checkbox" id="groq-enabled" />
+            <span>Habilitado</span>
+          </label>
+          <label class="field-label">API key</label>
+          <input type="password" id="groq-key" class="text-input" placeholder="gsk_..." />
+          <label class="field-label">Modelo</label>
+          <input type="text" id="groq-model" class="text-input" list="groq-model-suggestions" placeholder="openai/gpt-oss-20b" />
+          <datalist id="groq-model-suggestions">
+            <option value="openai/gpt-oss-20b"></option>
+            <option value="openai/gpt-oss-120b"></option>
+            <option value="qwen/qwen3.6-27b"></option>
+            <option value="llama-3.1-8b-instant"></option>
+          </datalist>
+          <p class="subtitle" style="margin-top:6px;">Gratis en console.groq.com, sin tarjeta — el límite es de velocidad (~30 solicitudes/min, hasta 14.400/día). Si un modelo se retira, cae solo al siguiente de la lista.</p>
+        </div>
+
+        <div class="config-section">
+          <div class="config-section-title">Modelos locales (Ollama)</div>
+          <p class="subtitle">Activa solo los que quieras que participen. Detectados automáticamente desde <code>ollama list</code>.</p>
+          <div id="ollama-models-list" class="ollama-models-list"></div>
+        </div>
+
+        <div class="config-section">
+          <div class="config-section-title">Quién sintetiza el consenso final</div>
+          <select id="synthesizer-select"></select>
+        </div>
+
+        <div class="config-section">
+          <div class="config-section-title">Memoria del proyecto</div>
+          <p class="subtitle">Texto que se manda SIEMPRE, en cada pregunta, como si el panel tuviera memoria permanente del proyecto (útil para no repetir contexto cada vez).</p>
+          <textarea id="project-memory" class="text-input manual-textarea" style="min-height:140px;" placeholder="Ej: Estamos trabajando en un proyecto de reconstrucción 3D desde imágenes generadas por IA, con medidas ancla tipo puerta=90cm..."></textarea>
+        </div>
+
+        <button type="submit" id="config-save">Guardar configuración</button>
+        <span id="config-saved-msg" class="saved-msg hidden">Guardado ✓</span>
+      </form>
+    </section>
+
+    <!-- VISTA: HISTORIAL -->
+    <section id="view-historial" class="view">
+      <header class="view-header">
+        <h1>Historial</h1>
+        <p class="subtitle">Conversaciones anteriores con el panel.</p>
+      </header>
+      <div id="history-list" class="history-list"></div>
+    </section>
+
+    <section id="view-tournament" class="view">
+      <header class="view-header">
+        <h1>🏆 Modo Torneo</h1>
+        <p class="subtitle">Las IAs responden, se califican entre ellas (nunca a sí mismas), y queda una ganadora.</p>
+      </header>
+      <div id="tournament-content"></div>
+    </section>
+
+  </main>
+
+  <aside class="status-panel">
+    <div class="interface-mode">
+      <label class="theme-toggle">
+        <input type="checkbox" id="theme-toggle" />
+        <span class="theme-toggle-track"><span class="theme-toggle-icon">☀</span><span class="theme-toggle-icon">☾</span></span>
+      </label>
+      <span class="interface-mode-label">Modo de interfaz</span>
+    </div>
+
+    <div class="status-panel-card">
+      <div class="status-panel-title"><span class="title-icon">✦</span> Actividad del panel</div>
+      <div id="status-panel-stage" class="status-panel-stage">En espera</div>
+      <div id="status-panel-list" class="status-panel-list"></div>
+      <button type="button" id="view-all-details-btn" class="view-all-details-btn">Ver todos los detalles →</button>
+    </div>
+
+    <div class="status-panel-card">
+      <div class="status-panel-title"><span class="title-icon">▤</span> Resumen del proyecto</div>
+      <div class="summary-row" style="margin-top:14px;"><span>Fase actual</span><span id="summary-phase">—</span></div>
+      <div class="progress-bar-track"><div id="summary-progress-fill" class="progress-bar-fill"></div></div>
+      <div class="summary-row"><span>Progreso</span><span id="summary-progress-text">0 / 4</span></div>
+      <div class="summary-row"><span>Tiempo activo</span><span id="summary-time">—</span></div>
+
+      <ol id="phases-list" class="phases-list">
+        <li data-phase="1"><span class="phase-li-label">Puntos de vista</span><span class="phase-li-status">Pendiente</span></li>
+        <li data-phase="2"><span class="phase-li-label">Discusión</span><span class="phase-li-status">Pendiente</span></li>
+        <li data-phase="3"><span class="phase-li-label">Respuestas finales</span><span class="phase-li-status">Pendiente</span></li>
+        <li data-phase="4"><span class="phase-li-label">Consenso final</span><span class="phase-li-status">Pendiente</span></li>
+      </ol>
+    </div>
+
+    <div class="status-panel-card orb-card">
+      <div class="orb-caption">Estado de la IA</div>
+      <button type="button" id="project-orb-stage" class="orb-stage" title="Clic para dictar tu pregunta por voz">
+        <svg id="project-orb-svg" viewBox="0 0 400 400"></svg>
+      </button>
+      <div class="orb-hint">Toca el orbe para dictar tu pregunta</div>
+    </div>
+  </aside>
+
+</div>
+
+<button id="scroll-fab" class="scroll-fab hidden" title="Ir al final">▼</button>
+
+<script src="orb.js"></script>
+<script src="app.js"></script>
+<script src="tournament.js"></script>
+</body>
+</html>
